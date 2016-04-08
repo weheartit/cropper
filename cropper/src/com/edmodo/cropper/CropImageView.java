@@ -339,9 +339,6 @@ public class CropImageView extends ImageView {
     /**
      * Initialize the crop window by setting the proper {@link Edge} values.
      * <p/>
-     * If fixed aspect ratio is turned off, the initial crop window will be set to the displayed
-     * image with 10% margin. If fixed aspect ratio is turned on, the initial crop window will
-     * conform to the aspect ratio with at least one dimension maximized.
      */
     private void initCropWindow(@NonNull RectF bitmapRect) {
 
@@ -352,9 +349,9 @@ public class CropImageView extends ImageView {
 
         } else {
 
-            // Initialize crop window to have 10% padding w/ respect to Drawable's bounds.
-            final float horizontalPadding = 0.1f * bitmapRect.width();
-            final float verticalPadding = 0.1f * bitmapRect.height();
+            // No padding
+            final float horizontalPadding = 0;
+            final float verticalPadding = 0;
 
             Edge.LEFT.setCoordinate(bitmapRect.left + horizontalPadding);
             Edge.TOP.setCoordinate(bitmapRect.top + verticalPadding);
