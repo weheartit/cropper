@@ -302,7 +302,7 @@ public class CropImageView extends ImageView {
     /**
      * Gets the bounding rectangle of the bitmap within the ImageView.
      */
-    private RectF getBitmapRect() {
+    public RectF getBitmapRect() {
 
         final Drawable drawable = getDrawable();
         if (drawable == null) {
