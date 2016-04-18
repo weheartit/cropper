@@ -108,6 +108,8 @@ public class CropImageView extends ImageView {
     // Mode indicating how/whether to show the guidelines; must be one of GUIDELINES_OFF, GUIDELINES_ON_TOUCH, GUIDELINES_ON.
     private int mGuidelinesMode = 1;
 
+    private float mInitialCrop;
+
     // Constructors ////////////////////////////////////////////////////////////////////////////////
 
     public CropImageView(Context context) {
@@ -146,6 +148,10 @@ public class CropImageView extends ImageView {
         mBorderThickness = resources.getDimension(R.dimen.border_thickness);
         mCornerThickness = resources.getDimension(R.dimen.corner_thickness);
         mCornerLength = resources.getDimension(R.dimen.corner_length);
+    }
+
+    public void setInitialCrop(float value) {
+        mInitialCrop = value;
     }
 
     // View Methods ////////////////////////////////////////////////////////////////////////////////
@@ -349,9 +355,13 @@ public class CropImageView extends ImageView {
 
         } else {
 
+            if (mInitialCrop == 0) {
+                mInitialCrop = 1f;
+            }
+
             // No padding
-            final float horizontalPadding = 0;
-            final float verticalPadding = 0;
+            final float horizontalPadding = mInitialCrop * bitmapRect.width();
+            final float verticalPadding = mInitialCrop * bitmapRect.height();
 
             Edge.LEFT.setCoordinate(bitmapRect.left + horizontalPadding);
             Edge.TOP.setCoordinate(bitmapRect.top + verticalPadding);
